@@ -1,0 +1,16 @@
+#! /bin/sh
+
+dir=`dirname $0`
+
+echo "INSPECTING $1"
+
+for size in 1 5 10
+do
+    for file in `ls $dir/../input/${size}_*`
+    do
+        echo "Input file: `basename $file`"
+        cat $file
+        echo "Output:"
+        $1 $file /dev/stdout
+    done
+done
