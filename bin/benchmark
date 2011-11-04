@@ -6,7 +6,7 @@ export TIMEFORMAT=%3lR
 dir=`dirname $0`
 
 echo "BENCHMARKING $1"
-for file in $dir/../input/$2_*; do
+for file in $dir/../input/$2_* ; do
     basename=`basename $file`
     echo -n "Benchmark for $basename ... "
     if [ -x /usr/bin/time ]; then
