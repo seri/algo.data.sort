@@ -7,40 +7,35 @@ int *a;
 int n;
 ofstream ofs;
 
-int init(int argc, char *argv[])
-{
-    if (argc < 2)
-    {
+int init(int argc, char *argv[]) {
+    if (argc < 2) {
         cerr << "Usage: " << argv[0] << "<input-file> [output-file]" << endl;
         return 1;
     }
-    try
-    {
+    try {
         ifstream ifs(argv[1]);
         ifs >> n;
         a = new int[n];
-        for (int i = 0; i != n; ++i)
-        {
+        for (int i = 0; i != n; ++i) {
             int j; ifs >> j;
             a[i] = j;
         }
         ifs.close();
-        if (argc > 2) ofs.open(argv[2]);
-                 else ofs.basic_ios<char>::rdbuf(cout.rdbuf());
-    }
-    catch (exception &e)
-    {
+        if (argc > 2) {
+            ofs.open(argv[2]);
+        } else {
+            ofs.basic_ios<char>::rdbuf(cout.rdbuf());
+        }
+    } catch (exception &e) {
         cerr << e.what() << endl;
         return 1;
     }
     return 0;
 }
 
-void output(int *result, int)
-{
+void output(int *result, int) {
     ofs << n << endl;
-    for (int i = 0; i != n; ++i)
-    {
+    for (int i = 0; i != n; ++i) {
         ofs << a[i] << " ";
     }
     ofs << endl;
@@ -48,7 +43,6 @@ void output(int *result, int)
     delete a;
 }
 
-void output()
-{
+void output() {
     output(a, n);
 } 

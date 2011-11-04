@@ -2,25 +2,18 @@
 
 int *b;
 
-void merge(int *x1, int *x2, int *y1, int *y2)
-{
+void merge(int *x1, int *x2, int *y1, int *y2) {
     int *p = b, *x = x1, *y = y1;
-    while (true)
-    {
-        if (*x <= *y)
-        {
+    while (true) {
+        if (*x <= *y) {
             *p++ = *x++;
-            if (x > x2)
-            {
+            if (x > x2) {
                 while (y <= y2) *p++ = *y++;
                 break;
             }
-        } 
-        else 
-        {
+        } else {
             *p++ = *y++;
-            if (y > y2)
-            {
+            if (y > y2) {
                 while (x <= x2) *p++ = *x++;
                 break;
             }
@@ -38,10 +31,8 @@ void mergesort(int *lo, int *hi)
     merge(lo, p, q, hi);
 }
 
-int main(int argc, char *argv[])
-{
-    if (init(argc, argv) == 0)
-    {
+int main(int argc, char *argv[]) {
+    if (init(argc, argv) == 0) {
         b = new int[n];
         mergesort(a, a + n - 1);
         delete b;

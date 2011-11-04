@@ -1,15 +1,18 @@
 #! /bin/sh
 
-dir=`dirname $0`
 export TIME="Time: %es - Memory: %MK"
 export TIMEFORMAT=%3lR
 
-echo "BENCHMARKING $1"
+dir=`dirname $0`
 
-for file in $dir/../input/$2_*
-do
+echo "BENCHMARKING $1"
+for file in $dir/../input/$2_*; do
     basename=`basename $file`
     echo -n "Benchmark for $basename ... "
-    time $1 $file sort.out
+    if [ -x /usr/bin/time ]; then
+        /usr/bin/time $1 $file sort.out
+    else
+        time $1 $file sort.out
+    fi
     rm sort.out
 done

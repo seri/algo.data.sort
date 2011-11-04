@@ -2,20 +2,24 @@
 
 dir=`dirname $0`
 
-if [ ! -d "$dir/../input" ]
-then
-    mkdir "$dir/../input"  
+generator="$dir/../util/generate/generate"
+if [ ! -x  "$generator" ]; then
+    undo="`pwd`"
+    cd "`dirname "$generator"`"
+    make
+    cd "$undo"
 fi
 
-cd "$dir/../input"
+if [ ! -d "$dir/../input" ]; then
+    mkdir "$dir/../input"  
+fi
 
 echo -n "Generate input file for size = 1 .. "
 echo "1\n0" > "1_best"
 echo "Done"
 
-for size in 5 10 100 1000 10000 100000 1000000 10000000
-do
+for size in 5 10 100 1000 10000 100000 1000000 10000000; do
     echo -n "Generate input file for size = $size .. "
-    "../util/generate/generate" $size
+    "$generator" "$dir/../input/$size"
     echo "Done"
 done

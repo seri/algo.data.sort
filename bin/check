@@ -4,10 +4,8 @@ dir=`dirname $0`
 
 echo "CHECKING $1"
 
-for size in 1 5 10 100 1000 10000
-do
-    for file in `ls $dir/../input/${size}_*`
-    do
+for size in 1 5 10 100 1000 10000; do
+    for file in `ls $dir/../input/${size}_*`; do
         echo -n "`basename $file` - "
         $1 $file sort.out
         $dir/../util/check/check sort.out

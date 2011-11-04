@@ -2,6 +2,10 @@
 
 dir=`dirname $0`
 
+if [ ! -d "$dir/../input" ]; then
+    "$dir/generate"
+fi
+
 "$dir/check" "$1" "$2" "$3"
 echo
 "$dir/benchmark" "$1" "$2" "$3"
